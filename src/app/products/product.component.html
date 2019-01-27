@@ -34,7 +34,7 @@
   <tbody>
     <tr *ngFor='let prod of prods | productFilter : userInput '>
       <td><img [src]='prod.imageUrl' *ngIf="showImage" [style.width.px]="imageWidth"/></td>
-      <td style="color:magenta">{{prod.productName | customPipe }} </td>
+      <li><a [routerLink]= "['/detail', prod.productId]"> <td style="color:magenta">{{prod.productName | customPipe }} </td> </a></li>
       <td>{{prod.productCode}}/td>
       <td>{{prod.releaseDate}}</td>
       <td [ngStyle]="{'background-color':prod.price<20?'tomato':'slateblue',
@@ -43,5 +43,6 @@
     </tr>
   </tbody>
   </table>
+
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { IProduct } from '../IProduct';
 import { ProductService } from './product.service';
-
+import { Router} from '@angular/router';
 
 @Component(
     {
@@ -30,6 +30,11 @@ prods: IProduct[];
         this.title = msg;
     }
     ngOnInit(): void {
-        this.prods = this.prdService.getProducts();
+        this.prdService.getProducts()
+            .subscribe((data) => this.prods = data);
     }
+
+
+
+
 }

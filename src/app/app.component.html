@@ -1,6 +1,22 @@
 <div>
-    <h1>This is my home Component</h1>
-    <app-product></app-product>
-    <app-detail></app-detail>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Luqmaan & Zaina Web Site</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a [routerLink] = "['/home']"> home </a></li>
+            <li><a [routerLink]= "['/products']"> Products</a></li>
+            <li><a [routerLink]= "['/']"></a></li>
+            <li><a [routerLink] = "['/orders']"> Orders </a></li>
+          </ul>
+        </div>
+      </nav>
+
+    <router-outlet></router-outlet>
+
 </div>
+
+
 
