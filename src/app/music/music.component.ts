@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { IMusic } from './IMusic';
 import { ALL_MUSIC } from './mock-music';
+import { MusicService } from './music.service';
 
 @Component({
     selector: 'app-music',
@@ -11,15 +12,22 @@ import { ALL_MUSIC } from './mock-music';
 export class MusicComponent implements OnInit {
    
     title: string;
-    allMusic: IMusic[];
+    allMusic: any[];
     selectedMusic: IMusic;
-    
+    constructor(private _musicService: MusicService){}
     ngOnInit(): void {
         this.title = "Music is working";
-        this.allMusic = ALL_MUSIC;
+        this._musicService.getAllMusic().subscribe((data) => 
+        this.allMusic = data);
+        console.log("Output: "+this.allMusic);
     }
 
     dislay(id):void{
-        this.selectedMusic = this.allMusic.find((data)=> (data.id === id))
+        this.selectedMusic = this.allMusic.find((data)=> this.isFound(data));
+    }
+    
+    isFound(data):boolean{
+        console.log( typeof data  );
+        return true;
     }
 }

@@ -10,13 +10,18 @@
                     <th></th>
                 </thead>
                 <tbody >
-                    <tr *ngFor="let music of allMusic" (click)="dislay(music.id)">
-                        <td>{{music.name}}</td>
-                        <td>
-                           {{music.name}}
-                        </td>
-                        <td>{{music.bio}}</td>
-                        <hr/>
+                    <tr *ngFor="let music of allMusic" >
+                     <td>
+                            <table><tbody> <tr *ngFor="let artist of music.artists" (click)="dislay(artist.id)">
+                                <td>   {{ artist.name }}
+                                
+                                <table><tbody> <tr *ngFor="let album of artist.albums">
+                                        <td>  <li> {{ album.title }} </li> </td>
+                                </tr></tbody></table>
+
+                                </td>
+                            </tr></tbody></table>
+                     </td>   
                     </tr>
                 </tbody>
             </table>
@@ -32,10 +37,10 @@
                         </thead>
                         <tbody >
                             <tr>
-                                <td>{{selectedMusic?.name}}</td>
+                                <td>{{selectedMusic}}</td>
                                 <td>
                                 </td>
-                                <td>{{selectedMusic?.bio}}</td>
+                                <td>{{selectedMusic}}</td>
                                 <hr/>
                             </tr>
                         </tbody>

@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductModule } from './products/product.module';
 import { BrowserModule } from '@angular/platform-browser'
 import { MusicComponent } from './music/music.component';
+import { MusicService } from './music/music.service';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -31,7 +32,7 @@ import { MusicComponent } from './music/music.component';
     ProductModule,
     BrowserModule 
     ],
-  providers: [ProductService],
+  providers: [ProductService,MusicService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
