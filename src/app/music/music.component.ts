@@ -23,11 +23,19 @@ export class MusicComponent implements OnInit {
     }
 
     dislay(id):void{
-        this.selectedMusic = this.allMusic.find((data)=> this.isFound(data));
+        this.selectedMusic = this.allMusic.find((data)=> this.isFound(data,id));
+        console.log(this.selectedMusic)
     }
     
-    isFound(data):boolean{
-        console.log( typeof data  );
-        return true;
+    isFound(data,artid):boolean{
+        console.log(artid);
+        console.log(data.artists[artid].id);
+        if((data.artists[artid].id - 1) === artid){
+            return true;
+        }
+        else{
+            return false;
+        }
+        
     }
 }

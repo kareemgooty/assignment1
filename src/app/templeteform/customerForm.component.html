@@ -1,0 +1,81 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Customer Form
+    </div>
+    <div class="panel-body">
+        <form #form=ngForm (submit)="formSubmit(form)">
+            <div class="form-group" [class.has-error]="firstNameRef.invalid">
+                <label class="control-label" for="firstname">FirstName*</label>
+                <input type="text" placeholder="firstname" id="firstname" name="firstname" class="form-control"
+                    [(ngModel)]="model.firstname" required #firstNameRef="ngModel" />
+                <div class="alert alert-danger" *ngIf="firstNameRef.invalid && firstNameRef.touched">
+                    First Name is required.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="lastname">LastName*</label>
+                <input type="text" placeholder="lastname" id="lastname" name="lastname" class="form-control"
+                    [(ngModel)]="model.lastname" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="email">Email</label>
+                <input type="text" placeholder="email" id="email" name="email" class="form-control" [(ngModel)]="model.email"
+                    pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"    
+                    #emailRef="ngModel" 
+                    />
+                <div class="alert alert-danger" *ngIf="emailRef.invalid && emailRef.touched">
+                    Please enter valid email
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="password">Password</label>{{model.password}}
+                <input type="password" placeholder="password" id="password" name="password" class="form-control" [(ngModel)]="model.password"
+                    #passwordRef="ngModel" minlength="2" />
+                 <div class="alert alert-danger" *ngIf="passwordRef.invalid">
+                    password must be of 8 character
+                </div>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="fullTime" value="fullTime" [(ngModel)]="model.fullTime" />FullTime
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="gender" value="male" [(ngModel)]="model.gender" />Male
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="gender" value="female" [(ngModel)]="model.gender" />Female
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Language</label>{{model.codelang}}
+                <select type="text" placeholder="firstname" id="codelang" name="codelang" class="form-control"
+                    [(ngModel)]="model.codelang" (change)="validateCodeLang($event)">
+                    <option value="default">
+                        Default
+                    </option>
+                    <option [value]="lang" *ngFor="let lang of languages">
+                        {{lang}}
+                    </option>
+
+                </select>
+                <div class="alert alert-danger" *ngIf="codeLangError">
+                    Please Select valid option
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success" [disabled]="codeLangError">Submit</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
